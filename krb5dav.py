@@ -72,7 +72,9 @@ class Krb5DAV(davlib.DAV):
 
     def __store_cookies(self, response):
         cookiestr = response.getheader('set-cookie')
-        self.__cookies.load(cookiestr)
+
+        if not cookiestr is None:
+            self.__cookies.load(cookiestr)
 
     def __request_authenticate(self, method, url, body, extra_hdrs):
         self.__probe_mechanisms()
